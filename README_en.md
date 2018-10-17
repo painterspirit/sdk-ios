@@ -200,7 +200,7 @@ To communicate with the pinpad it is required to establish a session. Connect to
     }];
 ```
 
-> We recomend this method to run this method every **3 minutes** (even if the application in in background) in case the pinpad being used is the `Gertec MOBI PIN 10`. This device has problems if no communication is made for a while.
+> We recommend running this method every **3 minutes** (even if the application is in the background) in case the pinpad being used is the `Gertec MOBI PIN 10`. This device has problems if no communication is made for a while.
 
 ##### Possible error code
 
@@ -210,11 +210,11 @@ To communicate with the pinpad it is required to establish a session. Connect to
 
 _First step: connecting to pinpad_
 
-- For `classic Bluetooth`: first you have to connect the bluetooth on your _iOS settings_.
+- For `classic Bluetooth`: first connect the bluetooth on your _iOS settings_.
 
 - For `Bluetooth Low Energy`:
-   - First thing to do is to set the delegate `STNPinpadConnectionDelegate` and initialize the central manager on `STNPinpadConnectionProvider`.
-   - Then you have to `startScan` for devices. In the `didFindPinpad` delegate method, you will get the devices supported by the StoneSDK, as a `STNPinpad`. Once you find the one(s) you want, you pass the `STNPinpad` as a parameter to `connectToPinpad:(STNPinpad*)pinpad`.  You should call `stopScan` at this point.
+   - First set the delegate `STNPinpadConnectionDelegate` and initialize the central manager on `STNPinpadConnectionProvider`.
+   - Next, `startScan` for devices. In the `didFindPinpad` delegate method, you will get the devices supported by the StoneSDK, as a `STNPinpad`. Once you find the one(s) you want, pass the `STNPinpad` as a parameter to `connectToPinpad:(STNPinpad*)pinpad`.  You should call `stopScan` at this point.
 
 ```objective-c
 // Connecting to BLE pinpads
@@ -295,7 +295,7 @@ STNPinPadConnectionProvider* connection;
 
 _Second step: selecting wanted pinpad:_
 
-After those first steps, for both kind of bluetooth, the devices connected will return on `listConnectedPinpads` as an array of `STNPinpad`, and they will continue to appear in this list unless you call `disconnectPinpad:(STNPinpad*)pinpad;` for BLE or disconnect the BT classic on the iOS settings (or if you close the app).
+After these first steps, for both kinds of bluetooth, the devices connected will return on `listConnectedPinpads` as an array of `STNPinpad`, and they will continue to appear in this list unless you call `disconnectPinpad:(STNPinpad*)pinpad;` for BLE or disconnect the BT classic on the iOS settings (or if you close the app).
 Once you find the one you want to use, you can select it passing it as a parameter to `selectPinpad:`.
 
 ```objective-c
@@ -387,7 +387,7 @@ NSString *stoneCode = @"999999999"; // Merchant's Stone Code
 [STNStoneCodeActivationProvider deactivateMerchantWithStoneCode:stoneCode];
 ```
 
-> ⚠️  Both this deactivating methods will delete the merchant from the application with all its transaction history.
+> ⚠️  Both of these deactivating methods will delete the merchant from the application and all its transaction history.
 
 #### Possible error codes
 
